@@ -12,4 +12,4 @@ __For dev-ing with live server reload:__
 
 __Otherwise,__
 
-`npm start`
+`npm start` 

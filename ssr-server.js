@@ -1,6 +1,7 @@
 const express = require('express')
 const next = require('next')
 const axios = require('axios')
+const _ = require('lodash')
     
 const dev = process.env.NODE_ENV !== 'production'
 const app = next({ dev })
@@ -18,8 +19,11 @@ app.prepare()
             per_page: req.query.per_page
         }
     }).then((body) => {
-        // TODO: only return necessary fields
-        return res.json(body.data)
+        const repos = _.map(body.data.items, (repo) => {
+          return _.pick(repo, 
+            ['full_name', 'language', 'description', 'stargazers_count']
+          )})
+        return res.json(repos)
     }).catch((err) => {
         return res.status(err.response.status).end(err.response.statusText)
     })
