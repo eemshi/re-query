@@ -4,17 +4,21 @@
   "description": "",
   "main": "index.js",
   "scripts": {
-    "dev": "node ssr-server.js",
+    "dev": "nodemon --exec 'npm start' ssr-server.js",
     "build": "next build",
-    "start": "next start"
+    "start": "node ssr-server.js"
   },
   "keywords": [],
   "author": "",
   "license": "ISC",
   "dependencies": {
+    "axios": "^0.19.0",
     "express": "^4.17.1",
     "next": "^8.1.0",
     "react": "^16.8.6",
     "react-dom": "^16.8.6"
+  },
+  "devDependencies": {
+    "nodemon": "^1.19.1"
   }
 }
