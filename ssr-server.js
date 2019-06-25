@@ -12,18 +12,19 @@ app.prepare()
   const server = express()
 
   server.get('/search', (req, res) => {
+    const sort = req.query.sort === "relevance" ? null : "stars"
     axios.get('https://api.github.com/search/repositories', {
         params: {
             q: req.query.q,
-            sort: req.query.sort,
-            per_page: req.query.per_page
+            sort,
+            per_page: 30
         }
     }).then((body) => {
-        const repos = _.map(body.data.items, (repo) => {
+        const repositories = _.map(body.data.items, (repo) => {
           return _.pick(repo, 
-            ['full_name', 'language', 'description', 'stargazers_count']
+            ['id', 'full_name', 'language', 'description', 'stargazers_count']
           )})
-        return res.json(repos)
+        return res.json(repositories)
     }).catch((err) => {
         return res.status(err.response.status).end(err.response.statusText)
     })
