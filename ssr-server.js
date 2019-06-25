@@ -22,7 +22,7 @@ app.prepare()
     }).then((body) => {
         const repositories = _.map(body.data.items, (repo) => {
           return _.pick(repo, 
-            ['id', 'full_name', 'language', 'description', 'stargazers_count']
+            ['id', 'full_name', 'language', 'description', 'stargazers_count', 'url']
           )})
         return res.json(repositories)
     }).catch((err) => {

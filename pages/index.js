@@ -1,12 +1,13 @@
 import React, { useState, useEffect } from 'react'
-import { InputGroup, Button } from 'react-bootstrap'
+import { InputGroup, Button, Jumbotron } from 'react-bootstrap'
 import Head from 'next/head';
 import axios from 'axios'
+import RepositoryCard from '../src/RepositoryCard'
 
 const Index = () => {
     const [query, setQuery] = useState("")
     const [sort, setSort] = useState("relevance")
-    const [repos, setRepos] = useState([])
+    const [repositories, setRepositories] = useState([])
 
     const handleSearch = async () => {
       try {
@@ -14,9 +15,9 @@ const Index = () => {
           const res = await axios.get('/search', {
             params: { q: query, sort }
           })
-          setRepos(res.data)
+          setRepositories(res.data)
         } else {
-          setRepos([])
+          setRepositories([])
         }
       } catch(err) {
         console.log(err)
@@ -30,7 +31,7 @@ const Index = () => {
     return (
       <div>
         <Head>
-          <title>re-query</title>
+          <title>Re-Query</title>
           <link
             rel="stylesheet"
             href="https://maxcdn.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css"
@@ -38,42 +39,56 @@ const Index = () => {
             crossOrigin="anonymous"
           />
         </Head>
+        <style jsx>{`input[type=text] { width: 300px }`}</style>
 
-        <InputGroup>
-          <input type="text" 
-            name="search" 
-            id="search-input"
-            className="mr-1" 
-            placeholder="whatcha lookin for?"
-            onChange={(e) => setQuery(e.target.value)} />
-          <Button variant="primary"
-            onClick={handleSearch}>Search</Button>
-        </InputGroup>
+        <Jumbotron className="text-center">
+          <h1 className="mb-4">Search Github Repos</h1>
+          <InputGroup className="mx-auto mb-2 justify-content-center">
+            <input type="text"
+              name="search" 
+              id="search-input"
+              className="mr-2" 
+              placeholder="Whatcha lookin for?"
+              onChange={(e) => setQuery(e.target.value)} />
+            <Button variant="primary"
+              onClick={handleSearch}>Search</Button>
+          </InputGroup>
+        </Jumbotron>
 
-        <div>
-          Sort by...
-          <input type="radio"
-            name="sort"
-            value="relevance"
-            checked={sort === "relevance"}
-            className="ml-2 mr-2"
-            onChange={(e) => setSort(e.target.value)} />
-            Relevance
-          <input type="radio"
-            name="sort"
-            value="stars"
-            checked={sort === "stars"}
-            className="ml-2 mr-2"
-            onChange={(e) => setSort(e.target.value)} />
-            Stars
-        </div>
+        {repositories.length > 0 && 
+          <div className="px-4 py-2">
+            <h2 className="text-center">Showing results for '{query}'</h2>
+            <div className="text-center my-4">
+              Sort by...
+              <input type="radio"
+                name="sort"
+                value="relevance"
+                checked={sort === "relevance"}
+                className="ml-2 mr-2"
+                onChange={(e) => setSort(e.target.value)} />
+                Relevance
+              <input type="radio"
+                name="sort"
+                value="stars"
+                checked={sort === "stars"}
+                className="ml-2 mr-2"
+                onChange={(e) => setSort(e.target.value)} />
+                Stars
+            </div>
 
-        {repos.length > 0 && 
-          <>
-            <h2>Results for '{query}'</h2>
-            {repos.map((repo) => 
-              <div key={repo.id}>{repo.full_name}, {repo.stargazers_count}</div>)}
-          </>
+            <div className="row">
+              {repositories.map((repo) => 
+                <div key={repo.id} className="col-sm-12 col-md-6 col-lg-4 col-xl-3 p-2">
+                  <RepositoryCard
+                    name={repo.full_name}
+                    language={repo.language}
+                    description={repo.description}
+                    stars={repo.stargazers_count}
+                    url={repo.url} /> 
+                </div>
+              )}
+            </div>
+          </div>
         }
       </div>
     )
