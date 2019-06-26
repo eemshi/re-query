@@ -37,9 +37,11 @@ const Index = () => {
           <SortComponent
             query={query}
             sort={sort}
-            setSort={setSort} />
+            setSort={setSort}
+          />
           <RepositoriesGrid
-            repositories={repositories} />
+            repositories={repositories}
+          />
         </div>
       }
     </div>

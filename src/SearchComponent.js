@@ -19,7 +19,7 @@ const SearchComponent = ({sort, query, setQuery, setRepositories}) => {
   }
 
   const handleSearchEnterKey = (target) => {
-      if (target.charCode === 13) handleSearch()
+    if (target.charCode === 13) handleSearch()
   }
 
   useEffect(() => {
@@ -36,7 +36,8 @@ const SearchComponent = ({sort, query, setQuery, setRepositories}) => {
           className="mr-2 px-2" 
           placeholder="Whatcha lookin for?"
           onChange={(e) => setQuery(e.target.value)}
-          onKeyPress={handleSearchEnterKey} />
+          onKeyPress={handleSearchEnterKey}
+        />
         <Button variant="primary"
           onClick={handleSearch}>
           Search</Button>

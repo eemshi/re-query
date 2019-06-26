@@ -12,15 +12,15 @@ const SortComponent = ({query, sort, setSort}) =>
         value="score"
         checked={sort === "score"}
         className="ml-2 mr-2"
-        onChange={(e) => setSort(e.target.value)} />
-        Relevance
+        onChange={(e) => setSort(e.target.value)}
+      /> Relevance
       <input type="radio"
         name="sort"
         value="stargazers_count"
         checked={sort === "stargazers_count"}
         className="ml-2 mr-2"
-        onChange={(e) => setSort(e.target.value)} />
-        Stars
+        onChange={(e) => setSort(e.target.value)}
+      /> Stars
     </div>
   </div>
 

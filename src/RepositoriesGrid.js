@@ -25,7 +25,8 @@ const RepositoriesGrid = ({repositories}) =>
           language={repo.language}
           description={repo.description}
           stars={repo.stargazers_count}
-          url={repo.url} /> 
+          url={repo.url}
+        />
       </div>
     )}
   </div>
