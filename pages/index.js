@@ -1,8 +1,10 @@
 import React, { useState, useEffect } from 'react'
-import { InputGroup, Button, Jumbotron } from 'react-bootstrap'
+import '../styles.less'
 import Head from 'next/head';
 import axios from 'axios'
+import { InputGroup, Button, Jumbotron } from 'react-bootstrap'
 import RepositoryCard from '../src/RepositoryCard'
+import Loader from '../src/Loader'
 
 const Index = () => {
     const [query, setQuery] = useState("")
@@ -43,7 +45,6 @@ const Index = () => {
             crossOrigin="anonymous"
           />
         </Head>
-        <style jsx>{`input[type=text] { width: 300px }`}</style>
 
         <Jumbotron className="text-center">
           <h1 className="mb-4">Search Github Repos</h1>
