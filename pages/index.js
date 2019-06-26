@@ -19,7 +19,7 @@ const HeadTag = () =>
 
 const Index = () => {
   const [query, setQuery] = useState("")
-  const [sort, setSort] = useState("relevance")
+  const [sort, setSort] = useState("score")
   const [repositories, setRepositories] = useState([])
 
   return (

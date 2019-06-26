@@ -9,15 +9,15 @@ const SortComponent = ({query, sort, setSort}) =>
       Sort by...
       <input type="radio"
         name="sort"
-        value="relevance"
-        checked={sort === "relevance"}
+        value="score"
+        checked={sort === "score"}
         className="ml-2 mr-2"
         onChange={(e) => setSort(e.target.value)} />
         Relevance
       <input type="radio"
         name="sort"
-        value="stars"
-        checked={sort === "stars"}
+        value="stargazers_count"
+        checked={sort === "stargazers_count"}
         className="ml-2 mr-2"
         onChange={(e) => setSort(e.target.value)} />
         Stars
