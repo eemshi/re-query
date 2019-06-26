@@ -24,6 +24,10 @@ const Index = () => {
       }
     }
 
+    const handleSearchEnterKey = (target) => {
+        if (target.charCode === 13) handleSearch()
+    }
+
     useEffect(() => {
       handleSearch()
     }, [sort])
@@ -47,9 +51,10 @@ const Index = () => {
             <input type="text"
               name="search" 
               id="search-input"
-              className="mr-2" 
+              className="mr-2 px-2" 
               placeholder="Whatcha lookin for?"
-              onChange={(e) => setQuery(e.target.value)} />
+              onChange={(e) => setQuery(e.target.value)}
+              onKeyPress={handleSearchEnterKey} />
             <Button variant="primary"
               onClick={handleSearch}>Search</Button>
           </InputGroup>
