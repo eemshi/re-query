@@ -6,7 +6,8 @@
   "scripts": {
     "dev": "nodemon --exec 'npm start' server.js",
     "build": "next build",
-    "start": "node server.js"
+    "start": "node server.js",
+    "test": "jest"
   },
   "keywords": [],
   "author": "",
@@ -25,6 +26,9 @@
     "redis": "^2.8.0"
   },
   "devDependencies": {
-    "nodemon": "^1.19.1"
+    "jest": "^24.8.0",
+    "moxios": "^0.4.0",
+    "nodemon": "^1.19.1",
+    "supertest": "^4.0.2"
   }
 }
