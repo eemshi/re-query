@@ -4,9 +4,9 @@
   "description": "",
   "main": "index.js",
   "scripts": {
-    "dev": "nodemon --exec 'npm start' ssr-server.js",
+    "dev": "nodemon --exec 'npm start' server.js",
     "build": "next build",
-    "start": "node ssr-server.js"
+    "start": "node server.js"
   },
   "keywords": [],
   "author": "",
